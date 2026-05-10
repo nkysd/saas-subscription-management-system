@@ -1,0 +1,42 @@
+@model List<MioMizutani_Lab3.Models.SubscriptionPlan>
+
+@{
+    ViewData["Title"] = "All Plans";
+}
+
+<h2>All Plans</h2>
+
+<p>Logged in as: @ViewBag.AdminName (@ViewBag.RoleName)</p>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Plan ID</th>
+            <th>Plan Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var plan in Model)
+            {
+                <tr>
+                    <td>@plan.PlanId</td>
+                    <td>@plan.PlanName</td>
+                    <td>$@plan.Price</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No plans found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index">Back to Menu</a>

@@ -1,0 +1,57 @@
+@model List<MioMizutani_Lab3.Models.Subscription>
+
+@{
+    ViewData["Title"] = "All Subscriptions";
+}
+
+<h2>All Subscriptions</h2>
+
+<p>Logged in as: @ViewBag.AdminName (@ViewBag.RoleName)</p>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Business Name</th>
+            <th>Plan</th>
+            <th>Users</th>
+            <th>Total Price</th>
+            <th>Discount Applied</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var sub in Model)
+            {
+                <tr>
+                    <td>@sub.Customer.BusinessName</td>
+                    <td>@sub.Plan.PlanName</td>
+                    <td>@sub.Users</td>
+                    <td>$@sub.TotalPrice</td>
+                    <td>
+                        @if (sub.Discount > 0)
+                        {
+                            <span>Yes</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No subscriptions found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<a asp-controller="Home" asp-action="Index">Back to Menu</a>

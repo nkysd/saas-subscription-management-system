@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Create Subscription";
+    var plans = ViewBag.Plans as List<MioMizutani_Lab3.Models.SubscriptionPlan>;
+}
+
+<h2>Create Subscription</h2>
+
+<p>Logged in as: @ViewBag.AdminName (@ViewBag.RoleName)</p>
+
+<hr />
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>Business Name</label>
+        <input type="text" name="businessName" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Select Plan</label>
+        <select name="planId" class="form-control">
+            @foreach (var plan in plans)
+            {
+                <option value="@plan.PlanId">@plan.PlanName ($@plan.Price)</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Number of Users (1-100)</label>
+        <input type="number" name="users" min="1" max="100" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Discount Code (or type "No")</label>
+        <input type="text" name="discountCode" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit">Create Subscription</button>
+
+</form>
+
+<br />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <p style="color:green">@ViewBag.SuccessMessage</p>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red">@ViewBag.ErrorMessage</p>
+}
+
+<a asp-controller="Home" asp-action="Index">Back to Menu</a>

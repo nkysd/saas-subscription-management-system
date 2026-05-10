@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>Welcome to QuTech Admin Portal</h2>
+
+<p>Logged in as: @ViewBag.AdminName (@ViewBag.RoleName)</p>
+
+<hr />
+
+<h3>Please choose an option:</h3>
+
+<ul>
+    <li>
+        <a asp-controller="SubscriptionPlan" asp-action="Index">
+            A. See all Plans
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Subscription" asp-action="Create">
+            B. Create a new Subscription
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Subscription" asp-action="Index">
+            C. Show all Subscriptions
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Module" asp-action="Index">
+            D. Show all Modules
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Invoice" asp-action="Index">
+            E. Show all Invoices
+        </a>
+    </li>
+</ul>

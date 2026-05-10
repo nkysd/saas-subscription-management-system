@@ -1,0 +1,168 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MioMizutani_Lab3.Data;
+using MioMizutani_Lab3.Models;
+using Microsoft.AspNetCore.Authorization;
+
+namespace MioMizutani_Lab3.Controllers
+{
+    [Authorize]
+    public class InvoiceController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public InvoiceController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Invoice
+        public IActionResult Index()
+        {
+            var invoices = _context.Invoices
+                .Include(i => i.Subscription)
+                .ToList();
+            return View(invoices);
+        }
+
+        // GET: Invoice/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var invoice = await _context.Invoices
+                .Include(i => i.Subscription)
+                .FirstOrDefaultAsync(m => m.InvoiceId == id);
+            if (invoice == null)
+            {
+                return NotFound();
+            }
+
+            return View(invoice);
+        }
+
+        // GET: Invoice/Create
+        public IActionResult Create()
+        {
+            ViewData["SubscriptionId"] = new SelectList(_context.Subscriptions, "SubscriptionId", "SubscriptionId");
+            return View();
+        }
+
+        // POST: Invoice/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("InvoiceId,SubscriptionId,Amount,Status")] Invoice invoice)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(invoice);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["SubscriptionId"] = new SelectList(_context.Subscriptions, "SubscriptionId", "SubscriptionId", invoice.SubscriptionId);
+            return View(invoice);
+        }
+
+        // GET: Invoice/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var invoice = await _context.Invoices.FindAsync(id);
+            if (invoice == null)
+            {
+                return NotFound();
+            }
+            ViewData["SubscriptionId"] = new SelectList(_context.Subscriptions, "SubscriptionId", "SubscriptionId", invoice.SubscriptionId);
+            return View(invoice);
+        }
+
+        // POST: Invoice/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,SubscriptionId,Amount,Status")] Invoice invoice)
+        {
+            if (id != invoice.InvoiceId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(invoice);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!InvoiceExists(invoice.InvoiceId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["SubscriptionId"] = new SelectList(_context.Subscriptions, "SubscriptionId", "SubscriptionId", invoice.SubscriptionId);
+            return View(invoice);
+        }
+
+        // GET: Invoice/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var invoice = await _context.Invoices
+                .Include(i => i.Subscription)
+                .FirstOrDefaultAsync(m => m.InvoiceId == id);
+            if (invoice == null)
+            {
+                return NotFound();
+            }
+
+            return View(invoice);
+        }
+
+        // POST: Invoice/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var invoice = await _context.Invoices.FindAsync(id);
+            if (invoice != null)
+            {
+                _context.Invoices.Remove(invoice);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool InvoiceExists(int id)
+        {
+            return _context.Invoices.Any(e => e.InvoiceId == id);
+        }
+    }
+}
