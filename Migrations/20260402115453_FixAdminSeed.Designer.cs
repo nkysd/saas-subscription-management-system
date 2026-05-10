@@ -172,7 +172,7 @@ namespace SaasSubscriptionManagementSystem.Migrations
                             UserId = 1,
                             Discriminator = "Admin",
                             Email = "admin@qutech.com",
-                            FullName = "Mio Mizutani",
+                            FullName = "Admin User",
                             Phone = "0400000000"
                         });
                 });

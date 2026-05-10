@@ -16,7 +16,7 @@ namespace SaasSubscriptionManagementSystem.Data
                 var admin = new Admin
                 {
                     UserId = 1,
-                    FullName = "Mio Mizutani",
+                    FullName = "Admin User",
                     Email = "admin@qutech.com",
                     Phone = "0400000000",
                     RoleName = "Administrator",
@@ -96,7 +96,7 @@ namespace SaasSubscriptionManagementSystem.Data
         {
             Action = "Create",
             EntityName = "SubscriptionPlan",
-            PerformedBy = "Mio Mizutani",
+            PerformedBy = "Administrator",
             Timestamp = DateTime.Now.AddDays(-5),
             Details = "Created Startup plan"
         },

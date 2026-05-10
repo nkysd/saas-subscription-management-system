@@ -43,7 +43,7 @@ namespace SaasSubscriptionManagementSystem.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Discriminator", "Email", "FullName", "Phone" },
-                values: new object[] { 1, "Admin", "admin@qutech.com", "Mio Mizutani", "0400000000" });
+                values: new object[] { 1, "Admin", "admin@qutech.com", "Admin User", "0400000000" });
         }
     }
 }

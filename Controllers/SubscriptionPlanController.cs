@@ -21,8 +21,8 @@ namespace SaasSubscriptionManagementSystem.Controllers
         {
             List<SubscriptionPlan> plans = _context.SubscriptionPlans.ToList();
 
-            ViewBag.AdminName = "Mio Mizutani";
-            ViewBag.RoleName = "Administrator";
+            ViewBag.AdminName = User.Identity.Name;
+            ViewBag.RoleName = User.IsInRole("Administrator") ? "Administrator" : "User";
 
             return View(plans);
         }

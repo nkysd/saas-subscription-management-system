@@ -11,8 +11,8 @@ namespace SaasSubscriptionManagementSystem.Controllers
         public IActionResult Index()
         {
             Admin admin = new Admin();
-            admin.FullName = "Mio Mizutani";
-            admin.Email = "mio@example.com";
+            admin.FullName = "Admin User";
+            admin.Email = "admin@example.com";
             admin.Phone = "0400000000";
             admin.RoleName = "Administrator";
 

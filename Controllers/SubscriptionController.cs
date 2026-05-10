@@ -20,8 +20,8 @@ namespace SaasSubscriptionManagementSystem.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.AdminName = "Mio Mizutani";
-            ViewBag.RoleName = "Administrator";
+            ViewBag.AdminName = User.Identity.Name;
+            ViewBag.RoleName = User.IsInRole("Administrator") ? "Administrator" : "User";
 
             var subscriptions = _context.Subscriptions
                 .Include(s => s.Customer)
@@ -35,8 +35,8 @@ namespace SaasSubscriptionManagementSystem.Controllers
         {
             List<SubscriptionPlan> plans = _context.SubscriptionPlans.ToList();
 
-            ViewBag.AdminName = "Mio Mizutani";
-            ViewBag.RoleName = "Administrator";
+            ViewBag.AdminName = User.Identity.Name;
+            ViewBag.RoleName = User.IsInRole("Administrator") ? "Administrator" : "User";
             ViewBag.Plans = plans;
 
             return View();
@@ -54,8 +54,8 @@ namespace SaasSubscriptionManagementSystem.Controllers
                 selectedPlan = plans.FirstOrDefault(p => p.PlanId == planIdInt);
             }
 
-            ViewBag.AdminName = "Mio Mizutani";
-            ViewBag.RoleName = "Administrator";
+            ViewBag.AdminName = User.Identity.Name;
+            ViewBag.RoleName = User.IsInRole("Administrator") ? "Administrator" : "User";
             ViewBag.Plans = plans;
 
             if (selectedPlan == null)
