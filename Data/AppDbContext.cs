@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MioMizutani_Lab3.Models;
+using SaasSubscriptionManagementSystem.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace MioMizutani_Lab3.Data;
+namespace SaasSubscriptionManagementSystem.Data;
 
 public class AppDbContext : DbContext
 {

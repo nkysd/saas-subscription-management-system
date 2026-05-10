@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MioMizutani_Lab3.Migrations
+namespace SaasSubscriptionManagementSystem.Migrations
 {
     /// <inheritdoc />
     public partial class ResetDatabase : Migration

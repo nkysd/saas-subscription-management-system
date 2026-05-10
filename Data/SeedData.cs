@@ -1,8 +1,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using MioMizutani_Lab3.Models;
+using SaasSubscriptionManagementSystem.Models;
 
-namespace MioMizutani_Lab3.Data
+namespace SaasSubscriptionManagementSystem.Data
 {
     public static class SeedData
     {

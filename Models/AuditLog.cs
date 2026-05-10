@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MioMizutani_Lab3.Models
+namespace SaasSubscriptionManagementSystem.Models
 {
     public class AuditLog
     {

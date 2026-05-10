@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MioMizutani_Lab3.Models.ViewModels
+namespace SaasSubscriptionManagementSystem.Models.ViewModels
 {
     public class LoginViewModel
     {

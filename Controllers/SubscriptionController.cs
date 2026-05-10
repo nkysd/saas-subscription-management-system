@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using MioMizutani_Lab3.Models;
-using MioMizutani_Lab3.Data;
+using SaasSubscriptionManagementSystem.Models;
+using SaasSubscriptionManagementSystem.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
-namespace MioMizutani_Lab3.Controllers
+namespace SaasSubscriptionManagementSystem.Controllers
 {
     [Authorize]
     public class SubscriptionController : Controller

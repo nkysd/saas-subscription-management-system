@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MioMizutani_Lab3.Data;
-using MioMizutani_Lab3.Models;
+using SaasSubscriptionManagementSystem.Data;
+using SaasSubscriptionManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace MioMizutani_Lab3.Controllers
+namespace SaasSubscriptionManagementSystem.Controllers
 {
     [Authorize]
     public class ModuleController : Controller

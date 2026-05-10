@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MioMizutani_Lab3.Data;
-using MioMizutani_Lab3.Models;
-using MioMizutani_Lab3.Models.ViewModels;
+using SaasSubscriptionManagementSystem.Data;
+using SaasSubscriptionManagementSystem.Models;
+using SaasSubscriptionManagementSystem.Models.ViewModels;
 
 
-namespace MioMizutani_Lab3.Controllers
+namespace SaasSubscriptionManagementSystem.Controllers
 {
     public class UserController : Controller
     {

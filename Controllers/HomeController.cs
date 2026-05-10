@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MioMizutani_Lab3.Models;
+using SaasSubscriptionManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace MioMizutani_Lab3.Controllers
+namespace SaasSubscriptionManagementSystem.Controllers
 {
     public class HomeController : Controller
     {

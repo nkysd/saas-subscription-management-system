@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MioMizutani_Lab3.Data;
+using SaasSubscriptionManagementSystem.Data;
 using System.Linq;
 
-namespace MioMizutani_Lab3.Controllers
+namespace SaasSubscriptionManagementSystem.Controllers
 {
     [Authorize]
     public class AuditLogController : Controller

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MioMizutani_Lab3.Data;
+using SaasSubscriptionManagementSystem.Data;
 
 #nullable disable
 
-namespace MioMizutani_Lab3.Migrations
+namespace SaasSubscriptionManagementSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260402121349_ResetDatabase")]
@@ -20,7 +20,7 @@ namespace MioMizutani_Lab3.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.5");
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.AuditLog", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.AuditLog", b =>
                 {
                     b.Property<int>("AuditLogId")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Invoice", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Invoice", b =>
                 {
                     b.Property<int>("InvoiceId")
                         .ValueGeneratedOnAdd()
@@ -77,7 +77,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("Invoices");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Module", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Module", b =>
                 {
                     b.Property<int>("ModuleId")
                         .ValueGeneratedOnAdd()
@@ -98,7 +98,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Subscription", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Subscription", b =>
                 {
                     b.Property<int>("SubscriptionId")
                         .ValueGeneratedOnAdd()
@@ -128,7 +128,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("Subscriptions");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.SubscriptionPlan", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.SubscriptionPlan", b =>
                 {
                     b.Property<int>("PlanId")
                         .ValueGeneratedOnAdd()
@@ -147,7 +147,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("SubscriptionPlans");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.SubscriptionPlanModule", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.SubscriptionPlanModule", b =>
                 {
                     b.Property<int>("PlanId")
                         .HasColumnType("INTEGER");
@@ -167,7 +167,7 @@ namespace MioMizutani_Lab3.Migrations
                     b.ToTable("SubscriptionPlanModules");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.User", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -201,9 +201,9 @@ namespace MioMizutani_Lab3.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Admin", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Admin", b =>
                 {
-                    b.HasBaseType("MioMizutani_Lab3.Models.User");
+                    b.HasBaseType("SaasSubscriptionManagementSystem.Models.User");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -222,9 +222,9 @@ namespace MioMizutani_Lab3.Migrations
                     b.HasDiscriminator().HasValue("Admin");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Customer", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Customer", b =>
                 {
-                    b.HasBaseType("MioMizutani_Lab3.Models.User");
+                    b.HasBaseType("SaasSubscriptionManagementSystem.Models.User");
 
                     b.Property<string>("BusinessName")
                         .IsRequired()
@@ -234,9 +234,9 @@ namespace MioMizutani_Lab3.Migrations
                     b.HasDiscriminator().HasValue("Customer");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Invoice", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Invoice", b =>
                 {
-                    b.HasOne("MioMizutani_Lab3.Models.Subscription", "Subscription")
+                    b.HasOne("SaasSubscriptionManagementSystem.Models.Subscription", "Subscription")
                         .WithMany()
                         .HasForeignKey("SubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -245,15 +245,15 @@ namespace MioMizutani_Lab3.Migrations
                     b.Navigation("Subscription");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Subscription", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Subscription", b =>
                 {
-                    b.HasOne("MioMizutani_Lab3.Models.Customer", "Customer")
+                    b.HasOne("SaasSubscriptionManagementSystem.Models.Customer", "Customer")
                         .WithMany("Subscriptions")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MioMizutani_Lab3.Models.SubscriptionPlan", "Plan")
+                    b.HasOne("SaasSubscriptionManagementSystem.Models.SubscriptionPlan", "Plan")
                         .WithMany("Subscriptions")
                         .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -264,15 +264,15 @@ namespace MioMizutani_Lab3.Migrations
                     b.Navigation("Plan");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.SubscriptionPlanModule", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.SubscriptionPlanModule", b =>
                 {
-                    b.HasOne("MioMizutani_Lab3.Models.Module", "Module")
+                    b.HasOne("SaasSubscriptionManagementSystem.Models.Module", "Module")
                         .WithMany("SubscriptionPlanModules")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MioMizutani_Lab3.Models.SubscriptionPlan", "SubscriptionPlan")
+                    b.HasOne("SaasSubscriptionManagementSystem.Models.SubscriptionPlan", "SubscriptionPlan")
                         .WithMany("SubscriptionPlanModules")
                         .HasForeignKey("SubscriptionPlanPlanId");
 
@@ -281,19 +281,19 @@ namespace MioMizutani_Lab3.Migrations
                     b.Navigation("SubscriptionPlan");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Module", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Module", b =>
                 {
                     b.Navigation("SubscriptionPlanModules");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.SubscriptionPlan", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.SubscriptionPlan", b =>
                 {
                     b.Navigation("SubscriptionPlanModules");
 
                     b.Navigation("Subscriptions");
                 });
 
-            modelBuilder.Entity("MioMizutani_Lab3.Models.Customer", b =>
+            modelBuilder.Entity("SaasSubscriptionManagementSystem.Models.Customer", b =>
                 {
                     b.Navigation("Subscriptions");
                 });
